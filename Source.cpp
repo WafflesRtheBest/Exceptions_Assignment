@@ -10,11 +10,19 @@
 
 using namespace std;
 
-//Function Protocols
-double half(double);
-float half(float);
-int half(int);
+//Function Protocols --------------------------
+
+//Char function
 char character(char start, int offset);
+
+//Template function for doubles and floats
+template <class T>
+T half(T num) {
+	return num / 2;
+}
+
+//Half function specifically for int
+int half(int);
 
 //Main function protocols
 int math_stuff();
@@ -40,6 +48,13 @@ int main() {
 			math_stuff();
 		}
 
+		else if (assignment == 'q') {
+			//Quit!
+			// END Program
+			system("pause");
+			return 0;
+		}
+
 		//Invalid
 		else {
 			cout << "Invalid, try again." << endl;
@@ -56,6 +71,7 @@ int main() {
 //15b ------------------------------
 int math_stuff() {
 
+	//test data
 	double a = 7.0;
 	float b = 5.0f;
 	int c = 3;
@@ -69,16 +85,14 @@ int math_stuff() {
 	return 0;
 }
 
-double half(double d) {
-	return d / 2;
-}
-
-float half(float d) {
-	return d / 2;
-}
-
 int half(int d) {
-	return ceil(d / 2);
+
+	//Turn the into into a float, call the half template function
+	float temp_f = static_cast<float>(d);
+	temp_f = half(temp_f);
+	d = round(temp_f);
+
+	return d;
 }
 
 //15a ------------------------------
